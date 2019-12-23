@@ -9,22 +9,15 @@ export default function App() {
   const [flipped, setFlipped] = useState([])
   const [solved, setSolved] = useState([])
   const [disabled, setDisabled] = useState(false)
-  //const [dimension, setDimension] = useState(600)
-  
+ 
   useEffect(() => {
-    //resizeBoard()
     setCards(initializeDeck())
   }, [])
 
   useEffect(() => {
     preLoadImages()
   }, cards)
-/*
-  useEffect(() => {
-    const resizeListener = window.addEventListener('resize', resizeBoard)
-    return () => window.removeEventListener('resize', resizeListener)
-  })
-*/
+
   const handleClick = (id) => {
     setDisabled(true)
     if (flipped.length === 0){
@@ -43,9 +36,8 @@ export default function App() {
       }
     }
   }
-
+  // Caching Images for better performance
   const preLoadImages = () => {
-    console.log(cards.length)
     cards.map(card => {
       const src =  `${card.type}.svg`
       console.log(src)
@@ -64,22 +56,11 @@ export default function App() {
     const flippedCard = cards.find((card) => flipped[0] === card.id)
     return flippedCard.type === clickedCard.type
   }
-/*
-  const resizeBoard = () => {
-    setDimension(
-      Math.min(
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight,
-      ),
-    )
-  } */
 
   return (
     <div>
       <h1>Memory Game</h1>
-      <h2>Can you remember where the cards are?</h2>
       <Board
-        //dimension = {dimension}
         cards={cards}
         flipped={flipped}
         handleClick={handleClick}
