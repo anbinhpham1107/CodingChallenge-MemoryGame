@@ -9,7 +9,7 @@ export default function App() {
   const [flipped, setFlipped] = useState([])
   const [solved, setSolved] = useState([])
   const [disabled, setDisabled] = useState(false)
- 
+  let text = "Game in progress..."
   useEffect(() => {
     setCards(initializeDeck())
   }, [])
@@ -30,6 +30,10 @@ export default function App() {
       if (isMatch(id)) {
         setSolved([... solved, flipped[0], id])
         resetCards()
+      }
+      if (solved.length === 36){
+        text = "You won!"
+        setTimeout(resetBoard,1500)
       }
       else {
         setTimeout(resetCards, 1500)
@@ -57,9 +61,22 @@ export default function App() {
     return flippedCard.type === clickedCard.type
   }
 
+  const resetBoard = () => {
+    resetCards()
+    setSolved([])
+    setCards(initializeDeck())
+    text = "Game in progress..."
+  } 
+
   return (
-    <div>
-      <h1>Memory Game</h1>
+    <div >
+      <div align="center">Memory Game</div>
+      <div align="center">
+      <button onClick={resetBoard}>
+       ↻ RESTART
+      </button>
+      <div> {text} </div>
+      </div>
       <Board
         cards={cards}
         flipped={flipped}
