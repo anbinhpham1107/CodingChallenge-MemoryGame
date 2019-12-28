@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Board from './components/board'
-
+import ReactDOM from 'react-dom';
 import initializeDeck from './deck'
 
 
@@ -9,14 +9,11 @@ export default function App() {
   const [flipped, setFlipped] = useState([])
   const [solved, setSolved] = useState([])
   const [disabled, setDisabled] = useState(false)
-  let text = "Game in progress..."
+  let matchedCounter = 0
+
   useEffect(() => {
     setCards(initializeDeck())
   }, [])
-
-  useEffect(() => {
-    preLoadImages()
-  }, cards)
 
   const handleClick = (id) => {
     setDisabled(true)
@@ -28,31 +25,24 @@ export default function App() {
       if (sameCardClicked(id)) return
       setFlipped([flipped[0], id])
       if (isMatch(id)) {
-        setSolved([... solved, flipped[0], id])
+        setSolved([...solved, flipped[0], id])
         resetCards()
+        matchedCounter +=1
       }
-      if (solved.length === 36){
-        text = "You won!"
-        setTimeout(resetBoard,1500)
+      if (matchedCounter === 18 ){
+        ReactDOM.render(renderGameOver, document.getElementById('root'));
       }
       else {
         setTimeout(resetCards, 1500)
       }
     }
   }
-  // Caching Images for better performance
-  const preLoadImages = () => {
-    cards.map(card => {
-      const src =  `${card.type}.svg`
-      console.log(src)
-      new Image().src = src
-    }) 
-  }
-
+  
   const resetCards = () => {
     setFlipped([])
     setDisabled(false)
   }
+
   const sameCardClicked = (id) => flipped.includes(id)
 
   const isMatch = (id) => {
@@ -65,8 +55,20 @@ export default function App() {
     resetCards()
     setSolved([])
     setCards(initializeDeck())
-    text = "Game in progress..."
-  } 
+  }
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  const renderGameOver = (
+    <div align="center">
+      <h1>Game Over! Press Restart to start a new game...</h1>
+      <button onClick={refreshPage}>
+       ↻ RESTART
+      </button>
+    </div>
+  );
 
   return (
     <div >
@@ -75,7 +77,7 @@ export default function App() {
       <button onClick={resetBoard}>
        ↻ RESTART
       </button>
-      <div> {text} </div>
+      <div>Game In Progress...</div>
       </div>
       <Board
         cards={cards}

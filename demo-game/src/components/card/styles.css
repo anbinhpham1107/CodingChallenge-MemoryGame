@@ -1,6 +1,6 @@
 .flip-container{
-    width: 125pc - 10px;
-    height: 125pc - 10px;
+    width: 125px - 20px;
+    height: 125px - 20px;
     border: 1px solid white;
     background:white;
     position: relative;
