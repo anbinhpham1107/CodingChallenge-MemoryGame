@@ -3,7 +3,6 @@ import Board from './components/board'
 import ReactDOM from 'react-dom';
 import initializeDeck from './deck'
 
-
 export default function App() {
   const [cards, setCards] = useState([])
   const [flipped, setFlipped] = useState([])
@@ -22,12 +21,15 @@ export default function App() {
       setDisabled(false)
     }
     else{
-      if (sameCardClicked(id)) return
+      if (sameCardClicked(id)) {
+        resetCards()
+      }
+      console.log(flipped)
       setFlipped([flipped[0], id])
-      if (isMatch(id)) {
+      if (isMatch(id) && flipped.length === 1) {
         setSolved([...solved, flipped[0], id])
         resetCards()
-        matchedCounter +=1
+        matchedCounter += 1
       }
       if (matchedCounter === 18 ){
         ReactDOM.render(renderGameOver, document.getElementById('root'));
