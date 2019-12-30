@@ -2,7 +2,8 @@
 Credits to flaticon.com for the icons<br />
 Credits to wikipedia.com for the shuffle algorithm<br />
 Credits to geeksforgeeks and stackoverflow for javascript/css syntax<br />
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br />
+The game is deployed at http://anbinhpham1107.github.io/demo-game
 
 ## Available Scripts
 
