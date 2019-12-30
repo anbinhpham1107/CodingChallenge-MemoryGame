@@ -18,15 +18,14 @@ import initializeDeck from './deck'
 *         4.If they don't match, turn them back over.
 *         5.The game is over when all the cards have been matched
 *******************************************************************************/
-
+// Initialize a counter to count the number matched pairs
+let matchedCounter = 0
 export default function App() {
   const [cards, setCards] = useState([])
   const [flipped, setFlipped] = useState([])
   const [solved, setSolved] = useState([])
   const [disabled, setDisabled] = useState(false)
-  // Initialize a counter to count the number matched pairs
-  let matchedCounter = 0
-  
+
   // Initialize the deck with randomized positions of cards
   useEffect(() => {
     setCards(initializeDeck())
@@ -50,15 +49,19 @@ export default function App() {
     // Handle the second flipped card 
     else{
     // Handle the same flipped card being clicked again
-      if (sameCardClicked(id)) resetCards()
+      if (sameCardClicked(id)){ 
+        setFlipped([id])
+        setDisabled(false)
+      }
     // If the second flipped card is a different card 
       setFlipped([flipped[0], id])
     // Check for match. If true set the two matched cards to be solved.
-      if (isMatch(id) && flipped.length === 1) {
+      if (isMatch(id) && !sameCardClicked(id)) {
         setSolved([...solved, flipped[0], id])
         resetCards()
         //Increment the counter for matched pairs 
         matchedCounter += 1
+        console.log(matchedCounter)
       }
       // Game Over if there are 18 pairs matched
       if (matchedCounter === 18 ){
