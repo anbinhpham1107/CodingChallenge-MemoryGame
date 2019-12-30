@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from "prop-types"
-
 import './styles.css'
-
+/**************************************************
+* Author: Binh An Pham
+* Version: 12/29/2019
+* Description: holds layouts and attributes of card
+* components
+***************************************************/
 export default function Card({ disabled, solved, handleClick, id, flipped, type, height, width}){
     return <div
         className={`flip-container ${flipped ? 'flipped' : ''}`}

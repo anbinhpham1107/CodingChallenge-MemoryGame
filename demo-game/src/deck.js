@@ -1,16 +1,9 @@
-
-//Imitate Fisher and Yates' shuffle 
-function shuffle(array) {
-    const _array = array.slice(0)
-    for (let i =0; i < array.length - 1; i++ ){
-        let randomIndex = Math.floor(Math.random() * (i + 1))
-        let temp = _array[i]
-        _array[i] = _array[randomIndex]
-        _array[randomIndex] = temp
-    }
-    return _array
-}
-
+/**************************************************
+* Author: Binh An Pham
+* Version: 12/29/2019
+* Description: initialize an array of all icons, 
+* create a duplicate to every icon and shuffle them
+***************************************************/
 export default function initializeDeck(){
     let id = 0
     const cards = ['adidas', 'android','apple', 'chick-fil-a','disney',
@@ -28,4 +21,21 @@ export default function initializeDeck(){
         return acc
     }, [])
     return shuffle(cards)
+}
+
+/**********************************************************
+* Function: shuffle
+* Arguments: an array of strings
+* Return: a randomized array
+* Description: imitate the Fisher-Yates shuffling algorithm
+***********************************************************/
+function shuffle(array) {
+    const _array = array.slice(0)
+    for (let i =0; i < array.length - 1; i++ ){
+        let randomIndex = Math.floor(Math.random() * (i + 1))
+        let temp = _array[i]
+        _array[i] = _array[randomIndex]
+        _array[randomIndex] = temp
+    }
+    return _array
 }

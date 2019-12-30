@@ -2,7 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Card from '../card'
 import './styles.css'
-
+/**************************************************
+* Author: Binh An Pham
+* Version: 12/29/2019
+* Description: holds the layout and attributes for 
+* the game board
+***************************************************/
 export default function Board({solved,disabled, cards, flipped, handleClick}){
     return <div className="board">
         {cards.map((card) => (
