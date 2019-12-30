@@ -1,7 +1,7 @@
 ## References
-Credits to flaticon.com for the icons
-Credits to wikipedia.com for the shuffle algorithm
-Credits to geeksforgeeks and stackoverflow for javascript/css syntax
+Credits to flaticon.com for the icons<br />
+Credits to wikipedia.com for the shuffle algorithm<br />
+Credits to geeksforgeeks and stackoverflow for javascript/css syntax<br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
