@@ -61,7 +61,6 @@ export default function App() {
         resetCards()
         //Increment the counter for matched pairs 
         matchedCounter += 1
-        console.log(matchedCounter)
       }
       // Game Over if there are 18 pairs matched
       if (matchedCounter === 18 ){
